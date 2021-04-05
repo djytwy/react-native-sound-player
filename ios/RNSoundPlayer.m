@@ -15,6 +15,7 @@ static NSString *const EVENT_FINISHED_PLAYING = @"FinishedPlaying";
 
 
 RCT_EXPORT_METHOD(playUrl:(NSString *)url) {
+    NSLog(@"111111播放的url： %@", url);
     [self prepareUrl:url];
     [self.avPlayer play];
 }
@@ -163,7 +164,9 @@ RCT_REMAP_METHOD(getInfo,
     }
 
     self.avPlayer = [[AVPlayer alloc] initWithURL:soundURL];
-    [self.player prepareToPlay];
+    [self.avPlayer play];
+    NSLog(@"222222222播放的URL是：   %@", url);
+    // [self.player prepareToPlay];
     [self sendEventWithName:EVENT_FINISHED_LOADING body:@{@"success": [NSNumber numberWithBool:true]}];
     [self sendEventWithName:EVENT_FINISHED_LOADING_URL body: @{@"success": [NSNumber numberWithBool:true], @"url": url}];
 }
